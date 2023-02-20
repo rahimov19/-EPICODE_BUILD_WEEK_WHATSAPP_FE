@@ -1,2 +1,2 @@
-# EPICODE_BUILD_WEEK_WHATSAPP_BE
-Whats App clone 
+# EPICODE_BUILD_WEEK_WHATSAPP_FE
+Whats App clone FrontEnd
