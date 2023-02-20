@@ -1,0 +1,24 @@
+.main-page-containers {
+  height: 92vh;
+}
+
+.navbar-containers,
+.write-new-message-container {
+  height: 8vh;
+}
+
+.flex-utility {
+  display: flex;
+}
+
+.navbar-user-icon {
+  background-color: lightblue;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.chat-scroll {
+  overflow: hidden;
+  overflow-y: scroll;
+}
