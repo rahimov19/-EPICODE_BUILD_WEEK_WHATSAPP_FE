@@ -1,5 +1,5 @@
 import * as Icon from "react-bootstrap-icons";
-import { FloatingLabel, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 const WriteNewMessage = () => {
   return (

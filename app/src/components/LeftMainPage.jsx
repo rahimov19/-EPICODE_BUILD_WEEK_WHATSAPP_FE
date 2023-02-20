@@ -1,5 +1,7 @@
+import ChatList from "./ChatList";
+
 const LeftMainPage = () => {
-  return <div>left section</div>;
+  return <ChatList />;
 };
 
 export default LeftMainPage;
