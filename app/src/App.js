@@ -7,7 +7,7 @@ import Auth from "./components/Loginpage/Auth";
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="App" style={{ maxWidth: "100%" }}>
         <Routes>
           <Route path="/auth/login" element={<Auth />} />
           <Route path="/auth/register" element={<Auth />} />
