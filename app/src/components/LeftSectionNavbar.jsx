@@ -8,16 +8,16 @@ const LeftSectionNavbar = () => {
       </div>
       <div className="flex-utility">
         <div className="mr-3">
-          <Icon.PeopleFill />
+          <Icon.PeopleFill className="iconTop" />
         </div>
         <div className="mr-3">
-          <Icon.ArrowRepeat />
+          <Icon.ArrowRepeat className="iconTop" />
         </div>
         <div className="mr-3">
-          <Icon.ChatLeftTextFill />
+          <Icon.ChatLeftTextFill className="iconTop" />
         </div>
         <div>
-          <Icon.ThreeDotsVertical />
+          <Icon.ThreeDotsVertical className="iconTop" />
         </div>
       </div>
     </div>

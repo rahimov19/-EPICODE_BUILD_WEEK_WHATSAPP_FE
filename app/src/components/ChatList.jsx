@@ -3,10 +3,10 @@ import SingleUserChatBox from "./SingleUserChatBox";
 
 const ChatList = () => {
   return (
-    <>
+    <div>
       <SearchChatInput />
       <SingleUserChatBox />
-    </>
+    </div>
   );
 };
 

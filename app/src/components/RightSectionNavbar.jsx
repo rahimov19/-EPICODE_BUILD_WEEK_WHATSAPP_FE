@@ -13,10 +13,10 @@ const RightSectionNavbar = () => {
       </div>
       <div className="flex-utility">
         <div className="mr-3">
-          <Icon.Search />
+          <Icon.Search className="iconTop" />
         </div>
         <div>
-          <Icon.ThreeDotsVertical />
+          <Icon.ThreeDotsVertical className="iconTop" />
         </div>
       </div>
     </div>

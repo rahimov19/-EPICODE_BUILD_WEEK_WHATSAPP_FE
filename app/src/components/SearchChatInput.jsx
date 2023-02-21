@@ -4,7 +4,7 @@ import * as Icon from "react-bootstrap-icons";
 const SearchChatInput = () => {
   return (
     // <div className="flex-utility align-items-center bg-secondary">
-    <div className="flex-utility justify-content-between align-items-center bg-white">
+    <div className="flex-utility justify-content-between align-items-center">
       <div className="py-2 flex-grow-1  mr-2">
         <InputGroup>
           <InputGroup.Text id="basic-addon1">
@@ -17,7 +17,7 @@ const SearchChatInput = () => {
         </InputGroup>
       </div>
       <div className="">
-        <Icon.Filter />
+        <Icon.Filter className="iconTop" />
       </div>
     </div>
   );
