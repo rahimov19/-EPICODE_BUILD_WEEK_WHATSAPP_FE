@@ -4,6 +4,7 @@ export const FETCH_CHATS = "FETCH_CHATS";
 export const FETCH_MESSAGES = "FETCH_MESSAGES";
 export const GET_CHATS_LOADING = "GET_CHATS_LOADING";
 export const GET_CHATS_ERROR = "GET_CHATS_ERROR";
+export const CHECK_AUTHENTICATION = "CHECK_AUTHENTICATION";
 
 export const saveUserAction = (user) => {
   return {
@@ -68,6 +69,7 @@ export const getMyUserDetailsAction = (accessToken) => {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
+        // Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2YzNjExZjJkNGFjMjlkZWNiNzhlNWMiLCJpYXQiOjE2NzY5NzMwODgsImV4cCI6MTY3NzU3Nzg4OH0.TEfdfhhYn4GDBA99-1I0cGasGA5-6tZmk0eHkia7bhV`,
         "Content-Type": "application/json",
       },
     };
@@ -80,11 +82,39 @@ export const getMyUserDetailsAction = (accessToken) => {
           type: SAVE_USER,
           payload: data,
         });
+        dispatch({
+          type: CHECK_AUTHENTICATION,
+          payload: true,
+        });
       } else {
         console.log("Error fetching own user data");
+        dispatch({
+          type: CHECK_AUTHENTICATION,
+          payload: false,
+        });
+        dispatch({
+          type: SAVE_TOKEN,
+          payload: "",
+        });
+        dispatch({
+          type: SAVE_USER,
+          payload: {},
+        });
       }
     } catch (error) {
       console.log("error: ", error);
+      dispatch({
+        type: CHECK_AUTHENTICATION,
+        payload: false,
+      });
+      dispatch({
+        type: SAVE_TOKEN,
+        payload: "",
+      });
+      dispatch({
+        type: SAVE_USER,
+        payload: {},
+      });
     }
   };
 };
@@ -112,9 +142,33 @@ export const submitLoginAction = (details) => {
         dispatch(getMyUserDetailsAction(data.accessToken));
       } else {
         console.log("Error loggin in");
+        dispatch({
+          type: CHECK_AUTHENTICATION,
+          payload: false,
+        });
+        dispatch({
+          type: SAVE_TOKEN,
+          payload: "",
+        });
+        dispatch({
+          type: SAVE_USER,
+          payload: {},
+        });
       }
     } catch (error) {
       console.log("error: ", error);
+      dispatch({
+        type: CHECK_AUTHENTICATION,
+        payload: false,
+      });
+      dispatch({
+        type: SAVE_TOKEN,
+        payload: "",
+      });
+      dispatch({
+        type: SAVE_USER,
+        payload: {},
+      });
     }
   };
 };
