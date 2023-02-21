@@ -15,10 +15,6 @@ const SingleUserChatBox = ({ chatDetails }) => {
   }
   console.log("history", chatHistory);
   console.log("members: ", chatMembers);
-  // const whoIamTalkingTo = chatMembers.filter((member) => member._id !== chatDetails);
-  // console.log("type: ", chatDetails.type);
-  // console.log("+++++++++++++++", format(new Date(), "MM/dd/yyyy"))
-  // console.log("date: ", format(parseISO(lastMessageDate), "MM/dd/yyyy"));
   return (
     <div className="flex-utility justify-content-between align-items-center chat-box-design">
       <div className="flex-grow-1 flex-utility align-items-center">
@@ -49,7 +45,6 @@ const SingleUserChatBox = ({ chatDetails }) => {
             ) : (
               <div className="no-messages-yet">Start new chat</div>
             )}
-            {/* <div>last message</div> */}
           </div>
         ) : (
           <div className="flex-grow-1">
@@ -59,7 +54,6 @@ const SingleUserChatBox = ({ chatDetails }) => {
             ) : (
               <div className="no-messages-yet">Start new chat</div>
             )}
-            {/* <div>last message</div> */}
           </div>
         )}
       </div>
