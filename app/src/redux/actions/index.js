@@ -17,6 +17,7 @@ export const fetchChatsAction = () => {
     console.log("getSTate", getState());
     //take the accessToken from the getState after we have the user set in place
     try {
+      // const accessToken = ""
       const accessToken =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2YzNjExZjJkNGFjMjlkZWNiNzhlNWMiLCJpYXQiOjE2NzY5NzMwODgsImV4cCI6MTY3NzU3Nzg4OH0.TEfdfhhYn4GDBA99-1I0cGasGA5-6tZmk0eHkia7bhE";
       console.log(accessToken);
@@ -33,6 +34,7 @@ export const fetchChatsAction = () => {
       );
       if (response.ok) {
         const fetchedData = await response.json();
+        console.log("FETCHED DATA", fetchedData);
         dispatch({ type: FETCH_CHATS, payload: fetchedData });
         dispatch({ type: GET_CHATS_LOADING, payload: false });
         dispatch({ type: GET_CHATS_ERROR, payload: false });

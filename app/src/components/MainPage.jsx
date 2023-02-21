@@ -10,6 +10,7 @@ import { fetchChatsAction } from "../redux/actions";
 const MainPage = () => {
   const dispatch = useDispatch();
   const chatList = useSelector((state) => state.chats.chatsStore);
+  console.log("****", chatList);
   const user = (state) => state.chats.user;
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const MainPage = () => {
       </Row>
       <Row className="main-page-containers ">
         <Col md={4} className="bg-main">
-          <LeftMainPage />
+          {chatList.length !== 0 && <LeftMainPage />}
         </Col>
         <Col
           md={8}
