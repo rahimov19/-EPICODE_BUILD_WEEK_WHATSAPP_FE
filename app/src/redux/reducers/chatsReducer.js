@@ -19,7 +19,7 @@ const initialState = {
 const chatsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_CHATS:
-      return { ...state, chatsStore: [action.payload] };
+      return { ...state, chatsStore: action.payload };
     case SAVE_USER:
       return { ...state, user: action.payload };
     case GET_CHATS_LOADING:

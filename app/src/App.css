@@ -95,7 +95,8 @@ textarea.h-100:enabled {
   box-shadow: none !important;
   border-color: var(--icon-color) !important;
 }
-.input-search-bg {
+.input-search-bg,
+.input-search-bg:focus {
   background-color: var(--hover-bg-color) !important;
   border-left: 0 !important;
   outline: none !important;
@@ -106,6 +107,7 @@ textarea.h-100:enabled {
   height: 50px;
   width: 50px;
   border-radius: 50%;
+  overflow: hidden;
 }
 
 .chat-box-design {
@@ -165,6 +167,38 @@ textarea.h-100:enabled {
 }
 #userInfoModalHeader {
   background-color: var(--secondary-bg-color);
+}
+
+.userImageChat {
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.defaultUserAvatar {
+  height: 100%;
+  width: 90%;
+  padding-top: 2px;
+  padding-bottom: 5px;
+}
+
+.no-messages-yet {
+  font-style: italic;
+  font-size: 10px;
+}
+
+.date-chat-design {
+  font-size: 10px;
+}
+
+.chat-username {
+  font-style: bold !important;
+}
+
+.defaultGroupAvatar {
+  height: 90%;
+  width: 70%;
 }
 
 .userInfoModalImage {
