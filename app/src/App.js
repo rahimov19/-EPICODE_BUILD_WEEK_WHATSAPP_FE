@@ -9,7 +9,8 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/auth" element={<Auth />} />
+          <Route path="/auth/login" element={<Auth />} />
+          <Route path="/auth/register" element={<Auth />} />
           <Route path="/" element={<MainPage />} />
         </Routes>
       </div>
