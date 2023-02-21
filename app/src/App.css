@@ -59,6 +59,7 @@ body {
   height: 50px;
   width: 50px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .chat-scroll {
@@ -154,6 +155,19 @@ textarea.h-100:enabled {
 .outMesssageRow {
   flex-wrap: nowrap !important;
 }
+#userInfoModal {
+  position: absolute !important;
+  height: 100vh;
+  width: 25vw;
+  top: -1.8em;
+  left: 0;
+  background-color: var(--main-bg-color);
+  border: 2px solid #000;
+  box-shadow: 24;
+}
+#userInfoModalHeader {
+  background-color: var(--secondary-bg-color);
+}
 
 .userImageChat {
   height: 100%;
@@ -185,4 +199,127 @@ textarea.h-100:enabled {
 .defaultGroupAvatar {
   height: 90%;
   width: 70%;
+}
+
+.userInfoModalImage {
+  border-radius: 50%;
+  width: 12em;
+  height: 12em;
+  object-fit: cover;
+  cursor: pointer;
+  position: relative;
+  animation-name: modalImage;
+  animation-duration: 0.5s;
+}
+.topOfImageDiv2 {
+  position: relative;
+}
+.topOfImageDiv {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  background: #0000002b;
+  transition: 0.5s;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+@keyframes modalImage {
+  0% {
+    opacity: 0;
+    scale: 0.2;
+  }
+  25% {
+    opacity: 0.2;
+    scale: 0.4;
+  }
+  50% {
+    opacity: 0.4;
+    scale: 0.8;
+  }
+  75% {
+    opacity: 0.7;
+    scale: 1.2;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+#userInfoModalUnderBody p {
+  color: var(--sent-message-color);
+  margin: 0;
+  margin-block: 1em;
+  animation-name: underModal;
+  animation-duration: 1s;
+}
+#userInfoModalUnderBody {
+  width: 100%;
+  padding-inline: 2em;
+  height: 50vh;
+}
+
+@keyframes underModal {
+  0% {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#userInfoModalUnderBody input {
+  all: unset;
+  border: 0;
+  background-color: transparent;
+  animation-name: underModal;
+  animation-duration: 1s;
+}
+#userInfoModalUnderBody input:focus,
+#userInfoModalUnderBody input:focus-visible {
+  /* box-shadow: none !important;
+  border: none !important;
+  outline: none; */
+  all: unset;
+  border-bottom: 2px solid var(--sent-message-color);
+  width: 100%;
+}
+.iconModal {
+  color: var(--icon-color);
+  font-size: 1.1em;
+  margin-left: auto;
+  cursor: pointer;
+}
+.disabledTopOfImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  opacity: 0;
+  transition: 0.5s;
+  z-index: -1;
+}
+.disabledTopOfP {
+  display: none;
+}
+input[type="file"] {
+  display: none;
 }
