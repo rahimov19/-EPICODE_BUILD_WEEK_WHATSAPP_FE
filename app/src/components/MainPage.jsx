@@ -11,6 +11,7 @@ import { Navigate } from "react-router-dom";
 const MainPage = () => {
   const dispatch = useDispatch();
   const chatList = useSelector((state) => state.chats.chatsStore);
+  console.log("****", chatList);
   const user = (state) => state.chats.user;
   let accessToken = useSelector((state) => state.chats.accessToken);
 
