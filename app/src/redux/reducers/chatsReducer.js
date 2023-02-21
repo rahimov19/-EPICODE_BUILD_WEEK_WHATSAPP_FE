@@ -3,6 +3,7 @@ import {
   SAVE_USER,
   GET_CHATS_LOADING,
   GET_CHATS_ERROR,
+  SAVE_TOKEN
 } from "../actions";
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   user: {},
   isChatListLoading: true,
   isChatListError: false,
+  accessToken: {},
 };
 
 const chatsReducer = (state = initialState, action) => {
@@ -28,6 +30,8 @@ const chatsReducer = (state = initialState, action) => {
         ...state,
         isChatListError: action.payload,
       };
+    case SAVE_TOKEN:
+      return { ...state, accessToken: action.payload };
     default:
       return state;
   }

@@ -3,12 +3,12 @@ import { Form } from "react-bootstrap";
 
 const WriteNewMessage = () => {
   return (
-    <div className="write-new-message-container bg-success flex-utility justify-content-between align-items-center">
+    <div className="write-new-message-container bg-hover flex-utility justify-content-between align-items-center">
       <div className="mr-3">
-        <Icon.EmojiSmile />
+        <Icon.EmojiSmile className="iconTop" />
       </div>
       <div className="mr-3">
-        <Icon.Paperclip />
+        <Icon.Paperclip className="iconTop" />
       </div>
       <div className="flex-grow-1 h-75 mr-3">
         <Form.Control
@@ -18,7 +18,7 @@ const WriteNewMessage = () => {
         />
       </div>
       <div>
-        <Icon.MicFill />
+        <Icon.MicFill className="iconTop" />
       </div>
     </div>
   );
