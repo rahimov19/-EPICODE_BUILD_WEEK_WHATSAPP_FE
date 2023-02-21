@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-
 const Auth = () => {
   return (
     <Container style={{ backgroundColor: "#25D366" }} fluid={true}>
