@@ -1,5 +1,7 @@
 import { format, parseISO } from "date-fns";
 import * as Icon from "react-bootstrap-icons";
+import { useDispatch } from "react-redux";
+import { setSelectedChatAction } from "../redux/actions";
 
 const SingleUserChatBox = ({ chatDetails }) => {
   console.log("^^^^^^^^^^^^^^", chatDetails);
@@ -13,8 +15,17 @@ const SingleUserChatBox = ({ chatDetails }) => {
   }
   console.log("history", chatHistory);
   console.log("members: ", chatMembers);
+
+  const dispatch = useDispatch();
+
+  const displaySelectedChat = (chatInfo) => {
+    dispatch(setSelectedChatAction(chatInfo));
+  };
   return (
-    <div className="flex-utility justify-content-between align-items-center chat-box-design">
+    <div
+      onClick={() => displaySelectedChat(chatDetails)}
+      className="flex-utility justify-content-between align-items-center chat-box-design"
+    >
       <div className="flex-grow-1 flex-utility align-items-center">
         <div className="chat-user-icon flex-utility align-items-center justify-content-center mr-3">
           {chatDetails &&
