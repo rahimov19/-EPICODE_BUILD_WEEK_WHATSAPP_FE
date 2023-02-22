@@ -25,10 +25,9 @@ const ChatList = () => {
       <SearchChatInput />
       {chatList.length !== 0 &&
         matchingChats.map((chat) => {
-          // if (chat.history.length !== 0) {}
-          // console.log("how many chats do we have?: ", chatList.length);
-          // console.log("current chat: ", chat);
-          return <SingleUserChatBox key={chat._id} chatDetails={chat} />;
+          if (chat.history.length !== 0) {
+            return <SingleUserChatBox key={chat._id} chatDetails={chat} />;
+          }
         })}
     </div>
   );
