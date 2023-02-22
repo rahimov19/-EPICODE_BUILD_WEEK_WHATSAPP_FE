@@ -6,6 +6,7 @@ export const GET_CHATS_LOADING = "GET_CHATS_LOADING";
 export const GET_CHATS_ERROR = "GET_CHATS_ERROR";
 export const CHECK_AUTHENTICATION = "CHECK_AUTHENTICATION";
 export const SET_SEARCHED_CHAT = "SET_SEARCHED_CHAT";
+export const SET_SELECTED_CHAT = "SET_SELECTED_CHAT";
 
 export const saveUserAction = (user) => {
   return {
@@ -211,5 +212,12 @@ export const setSearchedChatAction = (chatName) => {
   return {
     type: SET_SEARCHED_CHAT,
     payload: chatName,
+  };
+};
+
+export const setSelectedChatAction = (chatInfo) => {
+  return {
+    type: SET_SELECTED_CHAT,
+    payload: chatInfo,
   };
 };
