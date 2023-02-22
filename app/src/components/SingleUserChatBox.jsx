@@ -3,7 +3,6 @@ import * as Icon from "react-bootstrap-icons";
 
 const SingleUserChatBox = ({ chatDetails }) => {
   console.log("^^^^^^^^^^^^^^", chatDetails);
-  // const singleChat = chatDetails
   const chatMembers = chatDetails.members;
   const chatHistory = chatDetails.history;
   let messageDate = "";

@@ -5,6 +5,7 @@ import {
   GET_CHATS_ERROR,
   SAVE_TOKEN,
   CHECK_AUTHENTICATION,
+  SET_SEARCHED_CHAT,
 } from "../actions";
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   isChatListError: false,
   accessToken: {},
   isAuthenticated: false,
+  currentSearchedChat: "",
 };
 
 const chatsReducer = (state = initialState, action) => {
@@ -36,6 +38,11 @@ const chatsReducer = (state = initialState, action) => {
       return { ...state, accessToken: action.payload };
     case CHECK_AUTHENTICATION:
       return { ...state, isAuthenticated: action.payload };
+    case SET_SEARCHED_CHAT:
+      return {
+        ...state,
+        currentSearchedChat: action.payload,
+      };
     default:
       return state;
   }
