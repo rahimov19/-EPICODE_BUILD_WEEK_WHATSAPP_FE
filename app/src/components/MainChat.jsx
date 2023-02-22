@@ -8,8 +8,6 @@ const MainChat = () => {
     (state) => state.chats.selectedChat.history
   );
 
-  const selectedChat = useSelector((state) => state.chats.selectedChat);
-
   const myProfile = useSelector((state) => state.chats.user);
 
   console.log("history chat ________", selectedChatHistory);
@@ -49,9 +47,9 @@ const MainChat = () => {
             <div className="outcommingMessage">
               <Row className="outMesssageRow">
                 <div className="d-flex flex-row-reverse pl-4 mt-2">
-                  {selectedChat.members[0].avatar ? (
+                  {msg.sender.avatar ? (
                     <img
-                      src={selectedChat.members[0].avatar}
+                      src={msg.sender.avatar}
                       alt="avarat"
                       className="messageAvatar"
                     />
@@ -61,9 +59,7 @@ const MainChat = () => {
                 </div>
                 <div className="d-flex align-items-end">
                   <div className="d-flex flex-column bg-green mt-2 ml-2 px-3 py-2 messageBox">
-                    <div className="messageName">
-                      {selectedChat.members[0].username}
-                    </div>
+                    <div className="messageName">{msg.sender.username}</div>
                     <div>{msg.text}</div>
                   </div>
                   <div className="messageTime">
