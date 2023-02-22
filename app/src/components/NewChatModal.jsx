@@ -11,12 +11,22 @@ export default function NewChatModal() {
   const [users, setUsers] = useState(null);
   const [query, setQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-
+  const accessToken = useSelector((state) => state.chats.accessToken);
   const mainUser = useSelector((state) => state.chats.user);
   const mainUserId = mainUser._id;
+  const optionsGet = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+  };
   const fetchUsers = async () => {
     try {
-      let response = await fetch(`${process.env.REACT_APP_BE_URL}/users`);
+      let response = await fetch(
+        `${process.env.REACT_APP_BE_URL}/users`,
+        optionsGet
+      );
       if (response.ok) {
         let users = await response.json();
         setUsers(users);
@@ -59,7 +69,7 @@ export default function NewChatModal() {
         }}
       />
 
-      <Modal show={show} onHide={handleClose} id="userInfoModal">
+      <Modal show={show} onHide={handleClose} id="userInfoModal2">
         <Modal.Header closeButton={false} id="userInfoModalHeader">
           <Modal.Title>
             <ArrowLeft onClick={handleClose} className="mr-4" /> New Chat
@@ -89,7 +99,7 @@ export default function NewChatModal() {
               {filteredData.length !== 0 ? (
                 filteredData.map((user) =>
                   user._id !== mainUserId ? (
-                    <div className="d-flex userSearchUser">
+                    <div className="d-flex userSearchUser" key={user._id}>
                       <div className="mr-3">
                         <img
                           className="userAvatar"
@@ -113,7 +123,7 @@ export default function NewChatModal() {
               ) : users ? (
                 users.map((user) =>
                   user._id !== mainUserId ? (
-                    <div className="d-flex userSearchUser">
+                    <div className="d-flex userSearchUser" key={user._id}>
                       <div className="mr-3 d-flex align-items-center">
                         <img
                           className="userAvatar"
