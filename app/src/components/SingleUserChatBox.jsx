@@ -11,7 +11,6 @@ const SingleUserChatBox = ({ chatDetails }) => {
   if (chatHistory.length !== 0) {
     lastMessageDate = chatHistory[chatHistory.length - 1].createdAt;
     messageDate = format(parseISO(lastMessageDate), "MM/dd/yyyy");
-    console.log("###################", messageDate);
   }
   console.log("history", chatHistory);
   console.log("members: ", chatMembers);
