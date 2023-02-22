@@ -6,6 +6,7 @@ export const GET_CHATS_LOADING = "GET_CHATS_LOADING";
 export const GET_CHATS_ERROR = "GET_CHATS_ERROR";
 export const CHECK_AUTHENTICATION = "CHECK_AUTHENTICATION";
 export const SET_SEARCHED_CHAT = "SET_SEARCHED_CHAT";
+export const CREATE_NEW_CHAT = "CREATE_NEW_CHAT";
 
 export const saveUserAction = (user) => {
   return {
@@ -200,6 +201,32 @@ export const submitRegisterAction = (details) => {
         dispatch(getMyUserDetailsAction(data.accessToken));
       } else {
         console.log("Error changing profile details");
+      }
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
+};
+
+export const createNewChatAction = (details, accessToken, handleClose) => {
+  return async (dispatch) => {
+    console.log(details);
+    const optionsPost = {
+      method: "POST",
+      body: JSON.stringify(details),
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      let response = await fetch(`http://localhost:3001/chats`, optionsPost);
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+      } else {
+        console.log("Chat already exists");
+        return handleClose();
       }
     } catch (error) {
       console.log("error: ", error);

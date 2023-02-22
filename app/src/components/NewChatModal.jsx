@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Form, InputGroup, Modal } from "react-bootstrap";
 import { ArrowLeft, Search } from "react-bootstrap-icons";
 import * as Icon from "react-bootstrap-icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { createNewChatAction, CREATE_NEW_CHAT } from "../redux/actions";
 
 export default function NewChatModal() {
   const [show, setShow] = useState(false);
@@ -21,6 +22,7 @@ export default function NewChatModal() {
       "Content-Type": "application/json",
     },
   };
+  const dispatch = useDispatch();
   const fetchUsers = async () => {
     try {
       let response = await fetch(
@@ -59,6 +61,16 @@ export default function NewChatModal() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
+  const openNewChatHandler = (userId, accessToken, handleClose) => {
+    const newChat = {
+      type: "private",
+      members: [userId],
+      firstMessage: "placeholder", // need to update from chat input
+    };
+    dispatch({ type: CREATE_NEW_CHAT, payload: newChat });
+
+    // dispatch(createNewChatAction(newChat, accessToken, handleClose));
+  };
   return (
     <div>
       <Icon.ChatLeftTextFill
@@ -123,7 +135,13 @@ export default function NewChatModal() {
               ) : users ? (
                 users.map((user) =>
                   user._id !== mainUserId ? (
-                    <div className="d-flex userSearchUser" key={user._id}>
+                    <div
+                      className="d-flex userSearchUser"
+                      key={user._id}
+                      onClick={() => {
+                        openNewChatHandler(user._id, accessToken, handleClose);
+                      }}
+                    >
                       <div className="mr-3 d-flex align-items-center">
                         <img
                           className="userAvatar"
