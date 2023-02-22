@@ -1,14 +1,24 @@
 import * as Icon from "react-bootstrap-icons";
+import { useSelector } from "react-redux";
 
 const RightSectionNavbar = () => {
+  const selectedChat = useSelector((state) => state.chats.selectedChat);
   return (
     <div className="flex-utility justify-content-between align-items-center h-100">
       <div className="flex-utility">
         <div className="navbar-user-icon flex-utility align-items-center justify-content-center mr-3">
-          icon
+          {selectedChat.members[0].avatar ? (
+            <img
+              src={selectedChat.members[0].avatar}
+              alt="avatar image"
+              className="userImageChat"
+            />
+          ) : (
+            <Icon.PersonFill className="defaultUserAvatar" />
+          )}
         </div>
         <div className="flex-utility align-items-center justify-content-center">
-          name
+          {selectedChat.members[0].username}
         </div>
       </div>
       <div className="flex-utility">

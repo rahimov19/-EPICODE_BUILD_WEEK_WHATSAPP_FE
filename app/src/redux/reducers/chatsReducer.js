@@ -6,6 +6,7 @@ import {
   SAVE_TOKEN,
   CHECK_AUTHENTICATION,
   SET_SEARCHED_CHAT,
+  SET_SELECTED_CHAT,
 } from "../actions";
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   accessToken: {},
   isAuthenticated: false,
   currentSearchedChat: "",
+  selectedChat: "",
 };
 
 const chatsReducer = (state = initialState, action) => {
@@ -42,6 +44,11 @@ const chatsReducer = (state = initialState, action) => {
       return {
         ...state,
         currentSearchedChat: action.payload,
+      };
+    case SET_SELECTED_CHAT:
+      return {
+        ...state,
+        selectedChat: action.payload,
       };
     default:
       return state;
