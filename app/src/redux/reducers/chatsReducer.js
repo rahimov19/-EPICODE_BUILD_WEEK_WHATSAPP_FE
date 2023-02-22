@@ -51,6 +51,7 @@ const chatsReducer = (state = initialState, action) => {
       return {
         ...state,
         newChat: action.payload,
+      };
     case SET_SELECTED_CHAT:
       return {
         ...state,
