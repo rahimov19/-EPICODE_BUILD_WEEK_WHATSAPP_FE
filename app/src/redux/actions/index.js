@@ -5,6 +5,7 @@ export const FETCH_MESSAGES = "FETCH_MESSAGES";
 export const GET_CHATS_LOADING = "GET_CHATS_LOADING";
 export const GET_CHATS_ERROR = "GET_CHATS_ERROR";
 export const CHECK_AUTHENTICATION = "CHECK_AUTHENTICATION";
+export const SET_SEARCHED_CHAT = "SET_SEARCHED_CHAT";
 
 export const saveUserAction = (user) => {
   return {
@@ -203,5 +204,12 @@ export const submitRegisterAction = (details) => {
     } catch (error) {
       console.log("error: ", error);
     }
+  };
+};
+
+export const setSearchedChatAction = (chatName) => {
+  return {
+    type: SET_SEARCHED_CHAT,
+    payload: chatName,
   };
 };

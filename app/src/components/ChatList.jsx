@@ -5,23 +5,31 @@ import SingleUserChatBox from "./SingleUserChatBox";
 
 const ChatList = () => {
   const chatList = useSelector((state) => state.chats.chatsStore);
-  console.log("~~~~~~~~~~~~", chatList);
-  // const  chatList, se chatList] = useState(chatList);
+  const currentSearchedChat = useSelector(
+    (state) => state.chats.currentSearchedChat
+  );
 
-  // useEffect(() => {
-  //   se chatList(chatList);
-  // }, [chatList]);
-  // console.log("----------------", chatList);
+  const matchingChats = chatList.filter((chat) => {
+    if (
+      chat.members[0].username
+        .toLowerCase()
+        .includes(currentSearchedChat.toLowerCase())
+    ) {
+      return chat;
+    }
+  });
+
+  console.log("My chat list usernames : ", matchingChats);
   return (
     <div>
       <SearchChatInput />
       {chatList.length !== 0 &&
-        chatList.map((chat) => {
-          console.log("how many chats do we have?: ", chatList.length);
-          console.log("current chat: ", chat);
+        matchingChats.map((chat) => {
+          // if (chat.history.length !== 0) {}
+          // console.log("how many chats do we have?: ", chatList.length);
+          // console.log("current chat: ", chat);
           return <SingleUserChatBox key={chat._id} chatDetails={chat} />;
         })}
-      {/* <SingleUserChatBox /> */}
     </div>
   );
 };
