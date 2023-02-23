@@ -8,7 +8,14 @@ export const CHECK_AUTHENTICATION = "CHECK_AUTHENTICATION";
 export const SET_SEARCHED_CHAT = "SET_SEARCHED_CHAT";
 export const CREATE_NEW_CHAT = "CREATE_NEW_CHAT";
 export const SET_SELECTED_CHAT = "SET_SELECTED_CHAT";
+export const GET_SOCKET = "GET_SOCKET";
 
+export const getSocketAction = (socket) => {
+  return {
+    type: GET_SOCKET,
+    payload: socket,
+  };
+};
 
 export const saveUserAction = (user) => {
   return {
@@ -38,12 +45,13 @@ export const fetchChatsAction = (accessToken) => {
         `${process.env.REACT_APP_BE_URL}/chats`,
         getChatsOptions
       );
-      if (response.ok) {
+      if (response.ok || response.status === 204) {
         const fetchedData = await response.json();
         console.log("FETCHED DATA", fetchedData);
         dispatch({ type: FETCH_CHATS, payload: fetchedData });
         dispatch({ type: GET_CHATS_LOADING, payload: false });
         dispatch({ type: GET_CHATS_ERROR, payload: false });
+        // dispatch({ type: SET_SELECTED_CHAT, payload: fetchedData[0] });
       } else {
         dispatch({
           type: GET_CHATS_LOADING,
@@ -82,7 +90,7 @@ export const getMyUserDetailsAction = (accessToken) => {
     };
     try {
       let response = await fetch(`http://localhost:3001/users/me`, optionsGet);
-      if (response.ok) {
+      if (response.ok || response.status === 204) {
         let data = await response.json();
         console.log("🚀 ~ file: index.js:34 ~ return ~ data:", data);
         dispatch({

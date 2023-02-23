@@ -8,6 +8,7 @@ import {
   SET_SEARCHED_CHAT,
   CREATE_NEW_CHAT,
   SET_SELECTED_CHAT,
+  GET_SOCKET,
 } from "../actions";
 
 const initialState = {
@@ -17,13 +18,16 @@ const initialState = {
   isChatListError: false,
   accessToken: {},
   isAuthenticated: false,
-  currentSearchedChat: "",
+  currentSearchedChat: {},
   newChat: {},
-  selectedChat: "",
+  selectedChat: {},
+  socket: {},
 };
 
 const chatsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_SOCKET:
+      return { ...state, socket: action.payload };
     case FETCH_CHATS:
       return { ...state, chatsStore: action.payload };
     case SAVE_USER:

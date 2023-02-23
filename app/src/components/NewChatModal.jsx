@@ -3,7 +3,7 @@ import { Form, InputGroup, Modal } from "react-bootstrap";
 import { ArrowLeft, Search } from "react-bootstrap-icons";
 import * as Icon from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { createNewChatAction, CREATE_NEW_CHAT } from "../redux/actions";
+import { CREATE_NEW_CHAT, fetchChatsAction } from "../redux/actions";
 
 export default function NewChatModal() {
   const [show, setShow] = useState(false);
@@ -11,10 +11,17 @@ export default function NewChatModal() {
   const handleShow = () => setShow(true);
   const [users, setUsers] = useState(null);
   const [query, setQuery] = useState("");
+  const [selectedUser, setSelectedUser] = useState(null);
   const [filteredData, setFilteredData] = useState([]);
   const accessToken = useSelector((state) => state.chats.accessToken);
   const mainUser = useSelector((state) => state.chats.user);
   const mainUserId = mainUser._id;
+
+  useEffect(() => {
+    openNewChatHandler();
+    handleClose();
+  }, [selectedUser]);
+
   const optionsGet = {
     method: "GET",
     headers: {
@@ -61,12 +68,32 @@ export default function NewChatModal() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
-  const openNewChatHandler = (userId, accessToken, handleClose) => {
+  const openNewChatHandler = async () => {
     const newChat = {
       type: "private",
-      members: [userId],
-      firstMessage: "placeholder", // need to update from chat input
+      members: [selectedUser._id],
+      firstMessage: `${mainUser.username} and ${selectedUser.username} started conversation.`,
+      room: `${mainUserId}.${selectedUser._id}`, // need to update from chat input
     };
+
+    try {
+      const options = {
+        method: "POST",
+        body: JSON.stringify(newChat),
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      };
+      let response = await fetch(
+        `${process.env.REACT_APP_BE_URL}/chats`,
+        options
+      );
+      if (response.ok) dispatch(fetchChatsAction(accessToken));
+    } catch (error) {
+      console.log(error);
+    }
+
     dispatch({ type: CREATE_NEW_CHAT, payload: newChat });
 
     // dispatch(createNewChatAction(newChat, accessToken, handleClose));
@@ -111,7 +138,13 @@ export default function NewChatModal() {
               {filteredData.length !== 0 ? (
                 filteredData.map((user) =>
                   user._id !== mainUserId ? (
-                    <div className="d-flex userSearchUser" key={user._id}>
+                    <div
+                      className="d-flex userSearchUser"
+                      key={user._id}
+                      onClick={() => {
+                        setSelectedUser(user);
+                      }}
+                    >
                       <div className="mr-3">
                         <img
                           className="userAvatar"
@@ -139,7 +172,7 @@ export default function NewChatModal() {
                       className="d-flex userSearchUser"
                       key={user._id}
                       onClick={() => {
-                        openNewChatHandler(user._id, accessToken, handleClose);
+                        setSelectedUser(user);
                       }}
                     >
                       <div className="mr-3 d-flex align-items-center">
