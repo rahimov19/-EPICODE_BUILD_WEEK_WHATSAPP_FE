@@ -51,7 +51,7 @@ export const fetchChatsAction = (accessToken) => {
         dispatch({ type: FETCH_CHATS, payload: fetchedData });
         dispatch({ type: GET_CHATS_LOADING, payload: false });
         dispatch({ type: GET_CHATS_ERROR, payload: false });
-        // dispatch({ type: SET_SELECTED_CHAT, payload: fetchedData[0] });
+        dispatch({ type: SET_SELECTED_CHAT, payload: fetchedData[0] });
       } else {
         dispatch({
           type: GET_CHATS_LOADING,

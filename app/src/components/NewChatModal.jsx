@@ -11,7 +11,7 @@ export default function NewChatModal() {
   const handleShow = () => setShow(true);
   const [users, setUsers] = useState(null);
   const [query, setQuery] = useState("");
-  const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedUser, setSelectedUser] = useState({});
   const [filteredData, setFilteredData] = useState([]);
   const accessToken = useSelector((state) => state.chats.accessToken);
   const mainUser = useSelector((state) => state.chats.user);

@@ -6,19 +6,20 @@ import SingleUserChatBox from "./SingleUserChatBox";
 
 const ChatList = () => {
   const chatList = useSelector((state) => state.chats.chatsStore);
-  // const currentSearchedChat = useSelector(
-  //   (state) => state.chats.currentSearchedChat
-  // );
-  const currentSearchedChat = "Akb";
+  const currentSearchedChat = useSelector(
+    (state) => state.chats.currentSearchedChat
+  );
+  // const currentSearchedChat = "Akb";
 
   const matchingChats = chatList.filter((chat) => {
     console.log(chatList);
+    if (JSON.stringify(currentSearchedChat) !== JSON.stringify({})) {
+      chat.members[0].username
+        .toLowerCase()
+        .includes(currentSearchedChat.toLowerCase());
 
-    chat.members[0].username
-      .toLowerCase()
-      .includes(currentSearchedChat.toLowerCase());
-
-    return chat;
+      return chat;
+    }
   });
 
   console.log("My chat list usernames : ", matchingChats);
