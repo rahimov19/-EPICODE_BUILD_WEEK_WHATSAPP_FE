@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InputGroup, Form } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,10 @@ const SearchChatInput = () => {
   const [searchedChat, setSearchedChat] = useState(null);
   const chatList = useSelector((state) => state.chats.chatsStore);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setSearchedChatAction(""));
+  }, []);
 
   const onChangeHandler = (event) => {
     setSearchedChat(event.target.value);
