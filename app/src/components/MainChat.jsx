@@ -14,7 +14,7 @@ import { SocketContent } from "../context/socket";
 const MainChat = () => {
   const socket = useContext(SocketContent);
 
-  const selectedChatHistory = useSelector((state) => state.chats.selectedChat);
+  const selectedChat = useSelector((state) => state.chats.selectedChat);
   const chats = useSelector((state) => state.chats.chatsStore);
   const myProfile = useSelector((state) => state.chats.user);
   const accessToken = useSelector((state) => state.chats.accessToken);
@@ -31,9 +31,9 @@ const MainChat = () => {
     };
   }, []);
   useEffect(() => {
-    socket.emit("join-room", selectedChatHistory.room);
+    socket.emit("join-room", selectedChat.room);
   }, []);
-  console.log("history chat ________", selectedChatHistory);
+  console.log("history chat ________", selectedChat);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView();
@@ -41,16 +41,16 @@ const MainChat = () => {
 
   return (
     <div className="chat-scroll">
-      {selectedChatHistory && selectedChatHistory.history ? (
-        selectedChatHistory.history.map((msg, index) => {
-          if (msg.sender.toString() !== myProfile._id.toString()) {
+      {selectedChat && selectedChat.history ? (
+        selectedChat.history.map((msg, index) => {
+          if (msg.sender._id.toString() !== myProfile._id.toString()) {
             return (
               <div className="incomingMessage" key={index}>
                 <Row>
                   <div className="d-flex flex-row-reverse pl-4 mt-2">
                     {myProfile.avatar ? (
                       <img
-                        src={myProfile.avatar}
+                        src={selectedChat.members[0].avatar}
                         alt="avarat"
                         className="messageAvatar"
                       />
@@ -60,7 +60,9 @@ const MainChat = () => {
                   </div>
                   <div className="d-flex align-items-end">
                     <div className="d-flex flex-column bg-secondary2 mt-2 ml-2 px-3 py-2 messageBox">
-                      <div className="messageName">{myProfile.username}</div>
+                      <div className="messageName">
+                        {selectedChat.members[0].username}
+                      </div>
                       <div>{msg.text}</div>
                     </div>
                     <div className="messageTime">
