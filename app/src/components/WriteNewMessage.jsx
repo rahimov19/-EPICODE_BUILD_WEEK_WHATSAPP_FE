@@ -23,6 +23,7 @@ const WriteNewMessage = () => {
     const newMessage = {
       sender: user._id,
       text: message,
+      chatid: selectedChatHistory._id,
     };
     const room = currentChat.room;
     socket.emit("sendMessage", newMessage, room);

@@ -4,7 +4,11 @@ import * as Icon from "react-bootstrap-icons";
 import { format, parseISO } from "date-fns";
 
 import { useContext, useEffect } from "react";
-import { fetchChatsAction, setSelectedChatAction } from "../redux/actions";
+import {
+  fetchChatsAction,
+  getChat,
+  setSelectedChatAction,
+} from "../redux/actions";
 import { SocketContent } from "../context/socket";
 
 const MainChat = () => {
@@ -18,15 +22,13 @@ const MainChat = () => {
 
   useEffect(() => {
     socket.on("newMessage", (message) => {
-      dispatch(fetchChatsAction(accessToken));
-      const refreshedChat = chats.find(
-        (chat) => chat._id === selectedChatHistory._id
-      );
-      dispatch(setSelectedChatAction(refreshedChat));
-      console.log("EVERYTHING CALLED HERE!");
-      socket.removeAllListeners("newMessage");
+      console.log("MESSAGE IS:", message);
+      dispatch(getChat(accessToken, message.chatid));
     });
-  });
+    return () => {
+      socket.removeAllListeners("newMessage");
+    };
+  }, []);
   useEffect(() => {
     socket.emit("join-room", selectedChatHistory.room);
   }, []);
