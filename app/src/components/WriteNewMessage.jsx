@@ -18,7 +18,8 @@ const WriteNewMessage = () => {
       (chat) => chat._id === selectedChatHistory._id
     );
     dispatch(setSelectedChatAction(refreshedChat));
-  }, [chats]);
+  }, [chats, message]);
+
   const sendMessage = async () => {
     const newMessage = {
       sender: user._id,
@@ -62,6 +63,7 @@ const WriteNewMessage = () => {
           onSubmit={(e) => {
             e.preventDefault();
             sendMessage();
+            e.target.reset();
           }}
         >
           <Form.Control

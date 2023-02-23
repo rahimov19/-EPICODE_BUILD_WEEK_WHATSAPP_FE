@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as Icon from "react-bootstrap-icons";
 import { format, parseISO } from "date-fns";
 
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import {
   fetchChatsAction,
   getChat,
@@ -19,6 +19,7 @@ const MainChat = () => {
   const myProfile = useSelector((state) => state.chats.user);
   const accessToken = useSelector((state) => state.chats.accessToken);
   const dispatch = useDispatch();
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     socket.on("newMessage", (message) => {
@@ -33,6 +34,10 @@ const MainChat = () => {
     socket.emit("join-room", selectedChatHistory.room);
   }, []);
   console.log("history chat ________", selectedChatHistory);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView();
+  }, [chats]);
 
   return (
     <div className="chat-scroll">
@@ -97,6 +102,7 @@ const MainChat = () => {
       ) : (
         <></>
       )}
+      <div ref={messagesEndRef}></div>
     </div>
   );
 };
