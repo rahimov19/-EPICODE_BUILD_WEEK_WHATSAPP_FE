@@ -23,10 +23,6 @@ const ChatList = () => {
     }
   });
 
-  // useEffect(() => {
-  //   console.log("rerendered page****************");
-  // }, [chatList]);
-
   console.log("My chat list usernames : ", matchingChats);
   return (
     <div>
