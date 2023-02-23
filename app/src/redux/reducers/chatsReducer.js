@@ -26,6 +26,17 @@ const initialState = {
 
 const chatsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "UPDATE_CHAT":
+      return {
+        ...state,
+        chatsStore: state.chatsStore.map((c) => {
+          if (c._id === action.payload._id) {
+            return action.payload;
+          } else {
+            return c;
+          }
+        }),
+      };
     case GET_SOCKET:
       return { ...state, socket: action.payload };
     case FETCH_CHATS:

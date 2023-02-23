@@ -257,3 +257,41 @@ export const setSelectedChatAction = (chatInfo) => {
     payload: chatInfo,
   };
 };
+
+export const getChat = (accessToken, id) => {
+  return async (dispatch, getState) => {
+    //take the accessToken from the getState after we have the user set in place
+    try {
+      const getChatsOptions = {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+
+      const response = await fetch(
+        `${process.env.REACT_APP_BE_URL}/chats/${id}`,
+        getChatsOptions
+      );
+      if (response.ok || response.status === 204) {
+        const updatedChat = await response.json();
+        dispatch({
+          type: "UPDATE_CHAT",
+          payload: updatedChat,
+        });
+        dispatch({ type: SET_SELECTED_CHAT, payload: updatedChat });
+      } else {
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: GET_CHATS_LOADING,
+        payload: false,
+      });
+      dispatch({
+        type: GET_CHATS_ERROR,
+        payload: true,
+      });
+    }
+  };
+};

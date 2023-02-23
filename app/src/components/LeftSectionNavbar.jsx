@@ -1,5 +1,6 @@
 import { OverlayTrigger } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
+import GroupChatModal from "./GroupChatModal";
 import NewChatModal from "./NewChatModal";
 import UserInfo from "./UserInfo";
 
@@ -30,7 +31,7 @@ const LeftSectionNavbar = () => {
       </div>
       <div className="flex-utility">
         <div className="mr-3">
-          <Icon.PeopleFill className="iconTop" />
+          <GroupChatModal />
         </div>
         <div className="mr-3">
           <Icon.ArrowRepeat className="iconTop" />
