@@ -68,7 +68,9 @@ const WriteNewMessage = () => {
             type="text"
             placeholder="Type a message"
             className="h-100"
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => {
+              setMessage(e.target.value);
+            }}
           />
         </Form>
       </div>
