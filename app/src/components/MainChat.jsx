@@ -35,10 +35,10 @@ const MainChat = () => {
   return (
     <div className="chat-scroll">
       {selectedChatHistory && selectedChatHistory.history ? (
-        selectedChatHistory.history.map((msg) => {
+        selectedChatHistory.history.map((msg, index) => {
           if (msg.sender.toString() !== myProfile._id.toString()) {
             return (
-              <div className="incomingMessage">
+              <div className="incomingMessage" key={index}>
                 <Row>
                   <div className="d-flex flex-row-reverse pl-4 mt-2">
                     {myProfile.avatar ? (
@@ -65,7 +65,7 @@ const MainChat = () => {
             );
           } else {
             return (
-              <div className="outcommingMessage">
+              <div className="outcommingMessage" key={index}>
                 <Row className="outMesssageRow">
                   <div className="d-flex flex-row-reverse pl-4 mt-2">
                     {msg.sender.avatar ? (
