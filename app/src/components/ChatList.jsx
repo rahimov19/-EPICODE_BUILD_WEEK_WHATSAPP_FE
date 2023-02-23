@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+/* eslint-disable array-callback-return */
+
 import { useSelector } from "react-redux";
 import SearchChatInput from "./SearchChatInput";
 import SingleUserChatBox from "./SingleUserChatBox";
@@ -8,13 +9,15 @@ const ChatList = () => {
   const currentSearchedChat = useSelector(
     (state) => state.chats.currentSearchedChat
   );
+  // const currentSearchedChat = "Akb";
 
   const matchingChats = chatList.filter((chat) => {
-    if (
+    console.log(chatList);
+    if (JSON.stringify(currentSearchedChat) !== JSON.stringify({})) {
       chat.members[0].username
         .toLowerCase()
-        .includes(currentSearchedChat.toLowerCase())
-    ) {
+        .includes(currentSearchedChat.toLowerCase());
+
       return chat;
     }
   });

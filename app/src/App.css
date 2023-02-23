@@ -65,8 +65,11 @@ body {
 
 .chat-scroll {
   overflow: hidden;
-  min-height: 90%;
+  height: 85vh;
+  max-height: 90%;
   overflow-y: scroll;
+  padding-right: 1em;
+  /* padding-bottom: 3em; */
 }
 
 .search-input-icon {

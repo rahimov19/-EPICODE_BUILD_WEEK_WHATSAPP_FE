@@ -7,10 +7,10 @@ const RightSectionNavbar = () => {
     <div className="flex-utility justify-content-between align-items-center h-100">
       <div className="flex-utility">
         <div className="navbar-user-icon flex-utility align-items-center justify-content-center mr-3">
-          {selectedChat.members[0].avatar ? (
+          {selectedChat && selectedChat.members ? (
             <img
               src={selectedChat.members[0].avatar}
-              alt="avatar image"
+              alt="avatarimage"
               className="userImageChat"
             />
           ) : (
@@ -18,7 +18,11 @@ const RightSectionNavbar = () => {
           )}
         </div>
         <div className="flex-utility align-items-center justify-content-center">
-          {selectedChat.members[0].username}
+          {selectedChat && selectedChat.members ? (
+            selectedChat.members[0].username
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <div className="flex-utility">
