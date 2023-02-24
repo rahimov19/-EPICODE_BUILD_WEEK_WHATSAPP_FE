@@ -13,12 +13,61 @@ const WriteNewMessage = () => {
   const selectedChatHistory = useSelector((state) => state.chats.selectedChat);
   const chats = useSelector((state) => state.chats.chatsStore);
   const dispatch = useDispatch();
+  const [image, setImage] = useState(null);
   useEffect(() => {
     const refreshedChat = chats.find(
       (chat) => chat._id === selectedChatHistory._id
     );
     dispatch(setSelectedChatAction(refreshedChat));
   }, [chats, message]);
+
+  const sendImage = async () => {
+    const formData = new FormData();
+
+    formData.append("message", image);
+
+    const options2 = {
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+    try {
+      const newMessage = {
+        sender: user._id,
+        text: "image",
+        chatid: selectedChatHistory._id,
+      };
+      const options = {
+        method: "POST",
+        body: JSON.stringify(newMessage),
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      };
+      let idResponse = await fetch(
+        `${process.env.REACT_APP_BE_URL}/chats/${currentChat._id}/messages`,
+        options
+      );
+
+      if (idResponse.ok) {
+        try {
+          const idToSend = await idResponse.json();
+          const endpoint = `${process.env.REACT_APP_BE_URL}/chats/${currentChat._id}/${idToSend._id}/image`;
+          const response = await fetch(endpoint, options2);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      const room = currentChat.room;
+      socket.emit("sendMessage", newMessage, room);
+      dispatch(fetchChatsAction(accessToken));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const sendMessage = async () => {
     const newMessage = {
@@ -56,7 +105,18 @@ const WriteNewMessage = () => {
         <Icon.EmojiSmile className="iconTop" />
       </div>
       <div className="mr-3">
-        <Icon.Paperclip className="iconTop" />
+        <input
+          id="imageUpload"
+          type="file"
+          onChange={(e) => {
+            setImage(e.target.files[0]);
+            sendImage();
+          }}
+        />
+        <label for="imageUpload">
+          {" "}
+          <Icon.Paperclip className="iconTop" />
+        </label>
       </div>
       <div className="flex-grow-1 h-75 mr-3">
         <Form

@@ -31,7 +31,7 @@ const MainChat = () => {
     };
   }, []);
   useEffect(() => {
-    socket.emit("join-room", selectedChat.room);
+    chats.map((chat) => socket.emit("join-room", chat.room));
   }, []);
   console.log("history chat ________", selectedChat);
 
@@ -59,11 +59,19 @@ const MainChat = () => {
                     )}
                   </div>
                   <div className="d-flex align-items-end">
-                    <div className="d-flex flex-column bg-secondary2 mt-2 ml-2 px-3 py-2 messageBox">
+                    <div className="d-flex flex-column bg-secondary2 mt-2 ml-2 px-3 py-2 messageBox2">
                       <div className="messageName">
                         {selectedChat.members[0].username}
                       </div>
-                      <div>{msg.text}</div>
+                      {msg.image ? (
+                        <img
+                          src={msg.image}
+                          alt="message"
+                          className="messageImg"
+                        />
+                      ) : (
+                        <div>{msg.text}</div>
+                      )}
                     </div>
                     <div className="messageTime">
                       {format(parseISO(msg.createdAt), "HH:mm")}
@@ -90,7 +98,15 @@ const MainChat = () => {
                   <div className="d-flex align-items-end">
                     <div className="d-flex flex-column bg-green mt-2 ml-2 px-3 py-2 messageBox">
                       <div className="messageName">{msg.sender.username}</div>
-                      <div>{msg.text}</div>
+                      {msg.image ? (
+                        <img
+                          src={msg.image}
+                          alt="message"
+                          className="messageImg"
+                        />
+                      ) : (
+                        <div>{msg.text}</div>
+                      )}
                     </div>
                     <div className="messageTime">
                       {format(parseISO(msg.createdAt), "HH:mm")}
