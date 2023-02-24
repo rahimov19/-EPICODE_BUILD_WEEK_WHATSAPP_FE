@@ -8,20 +8,21 @@ const RightSectionNavbar = () => {
       <div className="flex-utility">
         <div className="navbar-user-icon flex-utility align-items-center justify-content-center mr-3">
           {selectedChat &&
-          selectedChat.members &&
-          selectedChat.members[0].avatar ? (
-            <img
-              src={selectedChat.members[0].avatar}
-              alt="avatarimage"
-              className="userImageChat"
-            />
-          ) : (
-            <Icon.PersonFill className="defaultUserAvatar" />
-          )}
-        </div>
-        <div className="flex-utility align-items-center justify-content-center">
-          {selectedChat && selectedChat.members ? (
-            selectedChat.members[0].username
+          selectedChat.type === "private" &&
+          selectedChat.members ? (
+            selectedChat.members[0].avatar ? (
+              <img
+                src={selectedChat.members[0].avatar}
+                alt="avatar image"
+                className="userImageChat"
+              />
+            ) : (
+              <Icon.PersonFill className="defaultUserAvatar" />
+            )
+          ) : selectedChat &&
+            selectedChat.type === "group" &&
+            selectedChat.members ? (
+            <Icon.PeopleFill className="defaultGroupAvatar" />
           ) : (
             <></>
           )}
