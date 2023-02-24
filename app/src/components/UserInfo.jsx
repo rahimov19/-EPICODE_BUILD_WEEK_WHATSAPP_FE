@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { ArrowLeft } from "react-bootstrap-icons";
 import { PencilFill, CameraFill, CheckLg } from "react-bootstrap-icons";
@@ -22,6 +23,10 @@ export default function UserInfo() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const token = useSelector((state) => state.chats.accessToken);
+
+  useEffect(() => {
+    if (image !== null) submitChangesImg();
+  }, [image]);
 
   const submitChangesImg = async () => {
     const formData = new FormData();
@@ -100,7 +105,6 @@ export default function UserInfo() {
               type="file"
               onChange={(e) => {
                 setImage(e.target.files[0]);
-                submitChangesImg();
               }}
             />
             <img
