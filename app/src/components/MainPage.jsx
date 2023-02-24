@@ -4,18 +4,15 @@ import { Container, Col, Row } from "react-bootstrap";
 import LeftSectionNavbar from "./LeftSectionNavbar";
 import RightSectionNavbar from "./RightSectionNavbar";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { fetchChatsAction, getMyUserDetailsAction } from "../redux/actions";
 import { Navigate } from "react-router-dom";
 
 const MainPage = () => {
   // const [accessToken, setAccessToken] = useState("");
   const dispatch = useDispatch();
-  const chatList = useSelector((state) => state.chats.chatsStore);
-  console.log("****", chatList);
   // const user = (state) => state.chats.user;
   const accessToken = useSelector((state) => state.chats.accessToken);
-  console.log(accessToken);
   let isAuthenticated = useSelector((state) => state.chats.isAuthenticated);
 
   useEffect(() => {

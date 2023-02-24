@@ -6,7 +6,6 @@ import { setSearchedChatAction } from "../redux/actions";
 
 const SearchChatInput = () => {
   const [searchedChat, setSearchedChat] = useState(null);
-  const chatList = useSelector((state) => state.chats.chatsStore);
   const dispatch = useDispatch();
 
   useEffect(() => {

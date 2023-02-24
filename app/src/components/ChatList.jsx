@@ -13,7 +13,6 @@ const ChatList = () => {
   // const currentSearchedChat = "Akb";
 
   const matchingChats = chatList.filter((chat) => {
-    console.log(chatList);
     if (JSON.stringify(currentSearchedChat) !== JSON.stringify({})) {
       chat.members[0].username
         .toLowerCase()
@@ -23,11 +22,8 @@ const ChatList = () => {
     }
   });
 
-  useEffect(() => {
-    console.log("page rerendered******");
-  }, [chatList]);
+  useEffect(() => {}, [chatList]);
 
-  console.log("My chat list usernames : ", matchingChats);
   return (
     <div>
       <SearchChatInput />

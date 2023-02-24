@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSelectedChatAction } from "../redux/actions";
 
 const SingleUserChatBox = ({ chatDetails }) => {
-  console.log("^^^^^^^^^^^^^^", chatDetails);
   const chatMembers = chatDetails.members;
   const chatHistory = chatDetails.history;
   const selectedChat = useSelector((state) => state.chats.selectedChat);
@@ -14,8 +13,6 @@ const SingleUserChatBox = ({ chatDetails }) => {
     lastMessageDate = chatHistory[chatHistory.length - 1].createdAt;
     messageDate = format(parseISO(lastMessageDate), "MM/dd/yyyy");
   }
-  console.log("history", chatHistory);
-  console.log("members: ", chatMembers);
 
   const dispatch = useDispatch();
 
@@ -36,7 +33,7 @@ const SingleUserChatBox = ({ chatDetails }) => {
               chatMembers[0].avatar ? (
                 <img
                   src={chatMembers[0].avatar}
-                  alt="avatar image"
+                  alt="avatar"
                   className="userImageChat"
                 />
               ) : chatDetails &&
@@ -85,7 +82,7 @@ const SingleUserChatBox = ({ chatDetails }) => {
               chatMembers[0].avatar ? (
                 <img
                   src={chatMembers[0].avatar}
-                  alt="avatar image"
+                  alt="avatar"
                   className="userImageChat"
                 />
               ) : chatDetails &&
