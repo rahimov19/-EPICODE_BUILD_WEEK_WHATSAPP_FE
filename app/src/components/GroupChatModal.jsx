@@ -26,13 +26,8 @@ export default function GroupChatModal() {
       const filteredArray = membersArray.filter((m) => m._id !== member._id);
 
       setMembers(filteredArray);
-      console.log(members);
     } else {
-      console.log("123");
-
       membersArray.push(member);
-
-      console.log(members);
       setMembers(membersArray);
     }
   };
@@ -54,7 +49,6 @@ export default function GroupChatModal() {
       if (response.ok) {
         let users = await response.json();
         setUsers(users);
-        console.log(users);
       } else {
         console.log("error while fetching users");
       }

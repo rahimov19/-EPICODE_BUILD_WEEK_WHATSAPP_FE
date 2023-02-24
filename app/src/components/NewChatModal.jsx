@@ -40,7 +40,6 @@ export default function NewChatModal() {
       if (response.ok) {
         let users = await response.json();
         setUsers(users);
-        console.log(users);
       } else {
         console.log("error while fetching users");
       }

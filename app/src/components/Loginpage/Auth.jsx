@@ -42,16 +42,12 @@ const Auth = () => {
   const handleSubmitLogin = (event) => {
     // here goes the fetch
     event.preventDefault();
-    // console.log("Email:", email);
-    // console.log("Password:", password);
     dispatch(submitLoginAction(details));
   };
 
   const handleSubmitRegister = (event) => {
     // here goes the fetch
     event.preventDefault();
-    // console.log("Email:", email);
-    // console.log("Password:", password);
     dispatch(submitRegisterAction(details));
   };
   if (isAuthenticated) {
