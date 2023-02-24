@@ -1,4 +1,5 @@
 import { format, parseISO } from "date-fns";
+import { useEffect, useState } from "react";
 import * as Icon from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedChatAction } from "../redux/actions";
@@ -6,6 +7,9 @@ import { setSelectedChatAction } from "../redux/actions";
 const SingleUserChatBox = ({ chatDetails }) => {
   const chatMembers = chatDetails.members;
   const chatHistory = chatDetails.history;
+  const chats = useSelector((state) => state.chats.chatStore);
+  const [filteredChat, setFilteredChat] = useState([]);
+  const user = useSelector((state) => state.chats.user);
   const selectedChat = useSelector((state) => state.chats.selectedChat);
   let messageDate = "";
   let lastMessageDate = "";
@@ -13,6 +17,19 @@ const SingleUserChatBox = ({ chatDetails }) => {
     lastMessageDate = chatHistory[chatHistory.length - 1].createdAt;
     messageDate = format(parseISO(lastMessageDate), "MM/dd/yyyy");
   }
+
+  const filterMember = () => {
+    if (chatDetails.type === "private") {
+      const filteredMemebr = chatDetails.members.filter(
+        (member) => member._id !== user._id
+      );
+      setFilteredChat(filteredMemebr);
+      console.log(filteredMemebr);
+    }
+  };
+  useEffect(() => {
+    filterMember();
+  }, [chats]);
 
   const dispatch = useDispatch();
 
@@ -30,25 +47,25 @@ const SingleUserChatBox = ({ chatDetails }) => {
     >
       <div className="flex-grow-1 flex-utility align-items-center">
         <div className="chat-user-icon flex-utility align-items-center justify-content-center mr-3">
-          {chatDetails &&
+          {filteredChat[0] &&
           chatDetails.type === "private" &&
-          chatMembers[0].avatar ? (
+          filteredChat[0].avatar ? (
             <img
-              src={chatMembers[0].avatar}
+              src={filteredChat[0].avatar}
               alt="avatar"
               className="userImageChat"
             />
-          ) : chatDetails &&
+          ) : filteredChat[0] &&
             chatDetails.type === "private" &&
-            !chatMembers[0].avatar ? (
+            !filteredChat[0].avatar ? (
             <Icon.PersonFill className="defaultUserAvatar" />
           ) : (
             <Icon.PeopleFill className="defaultGroupAvatar" />
           )}
         </div>
-        {chatDetails && chatDetails.type === "private" ? (
+        {filteredChat && chatDetails.type === "private" ? (
           <div className="flex-grow-1">
-            <div>{chatMembers[0].username}</div>
+            <div>{filteredChat[0] ? filteredChat[0].username : <></>}</div>
             {chatHistory.length !== 0 ? (
               <div className="d-md-none d-lg-block">
                 {chatHistory[chatHistory.length - 1].text}

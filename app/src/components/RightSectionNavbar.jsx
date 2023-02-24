@@ -3,34 +3,32 @@ import * as Icon from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 
 const RightSectionNavbar = () => {
-  const [filteredChat, setFilteredChat] = useState([]);
   const user = useSelector((state) => state.chats.user);
   const selectedChat = useSelector((state) => state.chats.selectedChat);
+  const [arr, setArr] = useState([]);
   useEffect(() => {
-    filterMember();
+    filterFunc();
   }, [selectedChat]);
-  const filterMember = () => {
+  const filterFunc = () => {
     if (
       selectedChat &&
       selectedChat.type === "private" &&
       selectedChat.members
     ) {
-      const filteredMemebr = selectedChat.members.filter(
+      const filteredChat = selectedChat.members.filter(
         (member) => member._id !== user._id
       );
-      setFilteredChat(filteredMemebr);
+      setArr(filteredChat);
     }
   };
   return (
     <div className="flex-utility justify-content-between align-items-center h-100">
-      {filteredChat &&
-      filteredChat.type === "private" &&
-      filteredChat.members ? (
+      {selectedChat && selectedChat.type === "private" && arr ? (
         <div className="flex-utility">
           <div className="navbar-user-icon flex-utility align-items-center justify-content-center mr-3">
-            {filteredChat[0].avatar ? (
+            {arr[0] && arr[0].avatar ? (
               <img
-                src={filteredChat[0].avatar}
+                src={arr[0].avatar}
                 alt="avatar image"
                 className="userImageChat"
               />
@@ -38,7 +36,7 @@ const RightSectionNavbar = () => {
               <Icon.PersonFill className="defaultUserAvatar" />
             )}
           </div>
-          <div className="my-auto">{filteredChat[0].username}</div>
+          <div className="my-auto">{arr[0] ? arr[0].username : <></>}</div>
         </div>
       ) : (
         <div className="flex-utility">
