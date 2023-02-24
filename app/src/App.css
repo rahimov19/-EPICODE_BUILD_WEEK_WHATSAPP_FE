@@ -542,3 +542,7 @@ input[type="file"] {
     transform: translateX(0);
   }
 }
+
+.currentSelectedChat {
+  background-color: #2a3942;
+}
