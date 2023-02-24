@@ -5,11 +5,7 @@ import * as Icon from "react-bootstrap-icons";
 import { format, parseISO } from "date-fns";
 
 import { useContext, useEffect, useRef } from "react";
-import {
-  fetchChatsAction,
-  getChat,
-  setSelectedChatAction,
-} from "../redux/actions";
+import { getChat } from "../redux/actions";
 
 import { SocketContent } from "../context/socket";
 
@@ -47,7 +43,6 @@ const MainChat = () => {
       {selectedChat && selectedChat.history ? (
         selectedChat.history.map((msg, index) => {
           if (msg.sender._id.toString() !== myProfile._id.toString()) {
-            console.log("11111111111");
             return (
               <div className="incomingMessage" key={index}>
                 <Row>
@@ -83,7 +78,6 @@ const MainChat = () => {
               </div>
             );
           } else {
-            console.log("22222");
             return (
               <div className="outcommingMessage" key={index}>
                 <Row className="outMesssageRow">

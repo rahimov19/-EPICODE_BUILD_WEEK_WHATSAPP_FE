@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { format, parseISO } from "date-fns";
 import { useEffect, useState } from "react";
 import * as Icon from "react-bootstrap-icons";
@@ -5,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSelectedChatAction } from "../redux/actions";
 
 const SingleUserChatBox = ({ chatDetails }) => {
-  const chatMembers = chatDetails.members;
   const chatHistory = chatDetails.history;
   const chats = useSelector((state) => state.chats.chatStore);
   const [filteredChat, setFilteredChat] = useState([]);
@@ -24,7 +24,6 @@ const SingleUserChatBox = ({ chatDetails }) => {
         (member) => member._id !== user._id
       );
       setFilteredChat(filteredMemebr);
-      console.log(filteredMemebr);
     }
   };
   useEffect(() => {

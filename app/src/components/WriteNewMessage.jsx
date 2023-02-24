@@ -61,6 +61,7 @@ const WriteNewMessage = () => {
           try {
             const idToSend = await idResponse.json();
             const endpoint = `${process.env.REACT_APP_BE_URL}/chats/${currentChat._id}/${idToSend._id}/image`;
+            // eslint-disable-next-line no-unused-vars
             const response = await fetch(endpoint, options2);
           } catch (error) {
             console.log(error);
@@ -73,7 +74,7 @@ const WriteNewMessage = () => {
         console.log(error);
       }
     } else {
-      console.log("error while sending an image - its null");
+      // console.log("error while sending an image - its null");
     }
   };
 
