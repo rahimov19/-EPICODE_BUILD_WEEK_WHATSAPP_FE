@@ -32,11 +32,11 @@ const MainChat = () => {
     return () => {
       socket.removeAllListeners("newMessage");
     };
-  }, [selectedChat]);
+  }, [chats, selectedChat]);
 
   useEffect(() => {
     chats.map((chat) => socket.emit("join-room", chat.room));
-  }, []);
+  }, [chats, selectedChat]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView();

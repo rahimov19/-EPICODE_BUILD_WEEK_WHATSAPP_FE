@@ -85,7 +85,6 @@ const WriteNewMessage = () => {
     };
     const room = currentChat.room;
     socket.emit("sendMessage", newMessage, room);
-    console.log(currentChat.room, "ROOOOOOOOOOOOOOM");
     try {
       const options = {
         method: "POST",
