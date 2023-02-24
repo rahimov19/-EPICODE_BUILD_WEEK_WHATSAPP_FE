@@ -16,8 +16,6 @@ import { SocketContent } from "../context/socket";
 const MainChat = () => {
   const socket = useContext(SocketContent);
 
-  const selectedChatHistory = useSelector((state) => state.chats.selectedChat);
-
   const selectedChat = useSelector((state) => state.chats.selectedChat);
   const chats = useSelector((state) => state.chats.chatsStore);
 
@@ -42,7 +40,7 @@ const MainChat = () => {
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView();
-  }, [chats]);
+  }, [chats, selectedChat]);
 
   return (
     <div className="chat-scroll">
