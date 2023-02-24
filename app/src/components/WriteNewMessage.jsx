@@ -125,7 +125,7 @@ const WriteNewMessage = () => {
           <Icon.Paperclip className="iconTop" />
         </label>
       </div>
-      <div className="flex-grow-1 h-75 mr-3">
+      <div className="flex-grow-1 mr-3">
         <Form
           onSubmit={(e) => {
             e.preventDefault();

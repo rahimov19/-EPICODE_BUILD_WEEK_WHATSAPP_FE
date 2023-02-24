@@ -60,7 +60,7 @@ const SingleUserChatBox = ({ chatDetails }) => {
               </div>
             ) : (
               <div className="flex-grow-1">
-                <div>Group name</div>
+                <div>{chatDetails.groupName}</div>
                 {chatHistory.length !== 0 ? (
                   <div>{chatHistory[chatHistory.length - 1].text}</div>
                 ) : (
