@@ -21,52 +21,59 @@ const WriteNewMessage = () => {
     );
     dispatch(setSelectedChatAction(refreshedChat));
   }, [chats, message]);
+  useEffect(() => {
+    sendImage();
+  }, [image]);
 
   const sendImage = async () => {
-    const formData = new FormData();
+    if (image !== null) {
+      const formData = new FormData();
 
-    formData.append("message", image);
+      formData.append("message", image);
 
-    const options2 = {
-      method: "POST",
-      body: formData,
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    };
-    try {
-      const newMessage = {
-        sender: user._id,
-        text: "image",
-        chatid: selectedChatHistory._id,
-      };
-      const options = {
+      const options2 = {
         method: "POST",
-        body: JSON.stringify(newMessage),
+        body: formData,
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
         },
       };
-      let idResponse = await fetch(
-        `${process.env.REACT_APP_BE_URL}/chats/${currentChat._id}/messages`,
-        options
-      );
+      try {
+        const newMessage = {
+          sender: user._id,
+          text: "image",
+          chatid: selectedChatHistory._id,
+        };
+        const options = {
+          method: "POST",
+          body: JSON.stringify(newMessage),
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+        };
+        let idResponse = await fetch(
+          `${process.env.REACT_APP_BE_URL}/chats/${currentChat._id}/messages`,
+          options
+        );
 
-      if (idResponse.ok) {
-        try {
-          const idToSend = await idResponse.json();
-          const endpoint = `${process.env.REACT_APP_BE_URL}/chats/${currentChat._id}/${idToSend._id}/image`;
-          const response = await fetch(endpoint, options2);
-        } catch (error) {
-          console.log(error);
+        if (idResponse.ok) {
+          try {
+            const idToSend = await idResponse.json();
+            const endpoint = `${process.env.REACT_APP_BE_URL}/chats/${currentChat._id}/${idToSend._id}/image`;
+            const response = await fetch(endpoint, options2);
+          } catch (error) {
+            console.log(error);
+          }
         }
+        const room = currentChat.room;
+        socket.emit("sendMessage", newMessage, room);
+        dispatch(fetchChatsAction(accessToken));
+      } catch (error) {
+        console.log(error);
       }
-      const room = currentChat.room;
-      socket.emit("sendMessage", newMessage, room);
-      dispatch(fetchChatsAction(accessToken));
-    } catch (error) {
-      console.log(error);
+    } else {
+      console.log("error while sending an image - its null");
     }
   };
 
@@ -111,7 +118,6 @@ const WriteNewMessage = () => {
           type="file"
           onChange={(e) => {
             setImage(e.target.files[0]);
-            sendImage();
           }}
         />
         <label for="imageUpload">
