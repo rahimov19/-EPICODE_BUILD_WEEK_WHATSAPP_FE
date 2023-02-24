@@ -91,7 +91,10 @@ export const getMyUserDetailsAction = (accessToken) => {
       },
     };
     try {
-      let response = await fetch(`http://localhost:3001/users/me`, optionsGet);
+      let response = await fetch(
+        `${process.env.REACT_APP_BE_URL}/users/me`,
+        optionsGet
+      );
       if (response.ok || response.status === 204) {
         let data = await response.json();
         console.log("🚀 ~ file: index.js:34 ~ return ~ data:", data);
@@ -147,7 +150,7 @@ export const submitLoginAction = (details) => {
     };
     try {
       let response = await fetch(
-        `http://localhost:3001/users/login`,
+        `${process.env.REACT_APP_BE_URL}/users/login`,
         optionsPost
       );
       if (response.ok) {
@@ -201,7 +204,7 @@ export const submitRegisterAction = (details) => {
     };
     try {
       let response = await fetch(
-        `http://localhost:3001/users/register`,
+        `${process.env.REACT_APP_BE_URL}/users/register`,
         optionsPost
       );
       if (response.ok) {
@@ -232,7 +235,10 @@ export const createNewChatAction = (details, accessToken, handleClose) => {
       },
     };
     try {
-      let response = await fetch(`http://localhost:3001/chats`, optionsPost);
+      let response = await fetch(
+        `${process.env.REACT_APP_BE_URL}/chats`,
+        optionsPost
+      );
       if (response.ok) {
         const data = await response.json();
         console.log(data);
