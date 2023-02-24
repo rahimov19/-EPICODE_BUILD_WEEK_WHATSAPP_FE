@@ -43,7 +43,9 @@ const RightSectionNavbar = () => {
           <div className="navbar-user-icon flex-utility align-items-center justify-content-center mr-3">
             <Icon.PeopleFill className="defaultGroupAvatar" />
           </div>
-          <div className="my-auto">{selectedChat.groupName}</div>
+          <div className="my-auto">
+            {selectedChat ? selectedChat.groupName : <></>}
+          </div>
         </div>
       )}
       <div className="flex-utility">
