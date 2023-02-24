@@ -28,8 +28,10 @@ const RightSectionNavbar = () => {
           <div className="navbar-user-icon flex-utility align-items-center justify-content-center mr-3">
             {arr[0] && arr[0].avatar ? (
               <img
+
                 src={arr[0].avatar}
                 alt="avatar image"
+
                 className="userImageChat"
               />
             ) : (
