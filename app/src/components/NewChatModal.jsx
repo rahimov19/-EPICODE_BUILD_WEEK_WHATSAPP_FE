@@ -147,15 +147,15 @@ export default function NewChatModal() {
                       }}
                     >
                       <div className="mr-3">
-                        <img
-                          className="userAvatar"
-                          src={
-                            user.avatar
-                              ? user.avatar
-                              : "http://placekitten.com/50"
-                          }
-                          alt="useravatar"
-                        />
+                        {user.avatar ? (
+                          <img
+                            className="userAvatar"
+                            src={user.avatar}
+                            alt="useravatar"
+                          />
+                        ) : (
+                          <Icon.PersonFill className="userAvatar" />
+                        )}
                       </div>
                       <div className="d-flex flex-column justify-content-center userSearchText">
                         <h4>{user.username}</h4>
@@ -177,15 +177,15 @@ export default function NewChatModal() {
                       }}
                     >
                       <div className="mr-3 d-flex align-items-center">
-                        <img
-                          className="userAvatar"
-                          src={
-                            user.avatar
-                              ? user.avatar
-                              : "http://placekitten.com/50"
-                          }
-                          alt="useravatar"
-                        />
+                        {user.avatar ? (
+                          <img
+                            className="userAvatar"
+                            src={user.avatar}
+                            alt="useravatar"
+                          />
+                        ) : (
+                          <Icon.PersonFill className="userAvatar" />
+                        )}
                       </div>
                       <div className="d-flex flex-column justify-content-center userSearchText">
                         <h4>{user.username}</h4>

@@ -19,7 +19,8 @@ const WriteNewMessage = () => {
       (chat) => chat._id === selectedChatHistory._id
     );
     dispatch(setSelectedChatAction(refreshedChat));
-  }, [chats]);
+  }, [chats, message]);
+
   const sendMessage = async () => {
     const newMessage = {
       sender: user._id,
@@ -63,13 +64,16 @@ const WriteNewMessage = () => {
           onSubmit={(e) => {
             e.preventDefault();
             sendMessage();
+            e.target.reset();
           }}
         >
           <Form.Control
             type="text"
             placeholder="Type a message"
             className="h-100"
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => {
+              setMessage(e.target.value);
+            }}
           />
         </Form>
       </div>

@@ -1,5 +1,6 @@
 /* eslint-disable array-callback-return */
 
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import SearchChatInput from "./SearchChatInput";
 import SingleUserChatBox from "./SingleUserChatBox";
@@ -21,6 +22,10 @@ const ChatList = () => {
       return chat;
     }
   });
+
+  // useEffect(() => {
+  //   console.log("rerendered page****************");
+  // }, [chatList]);
 
   console.log("My chat list usernames : ", matchingChats);
   return (
