@@ -1,21 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import * as Icon from "react-bootstrap-icons";
 import { format, parseISO } from "date-fns";
 
 import { useContext, useEffect } from "react";
-import {
-  fetchChatsAction,
-  getChat,
-  setSelectedChatAction,
-} from "../redux/actions";
+import { getChat } from "../redux/actions";
 import { SocketContent } from "../context/socket";
 
 const MainChat = () => {
   const socket = useContext(SocketContent);
 
   const selectedChatHistory = useSelector((state) => state.chats.selectedChat);
-  const chats = useSelector((state) => state.chats.chatsStore);
+
   const myProfile = useSelector((state) => state.chats.user);
   const accessToken = useSelector((state) => state.chats.accessToken);
   const dispatch = useDispatch();
@@ -32,7 +29,6 @@ const MainChat = () => {
   useEffect(() => {
     socket.emit("join-room", selectedChatHistory.room);
   }, []);
-  console.log("history chat ________", selectedChatHistory);
 
   return (
     <div className="chat-scroll">

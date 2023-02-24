@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { Form, InputGroup, Modal } from "react-bootstrap";
 import { ArrowLeft, Search } from "react-bootstrap-icons";
