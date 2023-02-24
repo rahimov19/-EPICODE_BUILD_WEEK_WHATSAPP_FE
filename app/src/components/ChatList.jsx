@@ -33,7 +33,7 @@ const ChatList = () => {
       <SearchChatInput />
       {chatList.length !== 0 &&
         matchingChats.map((chat) => {
-          if (chat.history.length !== 0) {
+          if (chat.history.length !== 0 && chat.members.length > 1) {
             return <SingleUserChatBox key={chat._id} chatDetails={chat} />;
           }
         })}
