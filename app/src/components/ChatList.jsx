@@ -10,7 +10,6 @@ const ChatList = () => {
   const currentSearchedChat = useSelector(
     (state) => state.chats.currentSearchedChat
   );
-  // const currentSearchedChat = "Akb";
 
   const matchingChats = chatList.filter((chat) => {
     if (JSON.stringify(currentSearchedChat) !== JSON.stringify({})) {
