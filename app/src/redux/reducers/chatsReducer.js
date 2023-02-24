@@ -9,6 +9,7 @@ import {
   CREATE_NEW_CHAT,
   SET_SELECTED_CHAT,
   GET_SOCKET,
+  CLEAR_FULL_STORE,
 } from "../actions";
 
 const initialState = {
@@ -71,6 +72,19 @@ const chatsReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedChat: action.payload,
+      };
+    case CLEAR_FULL_STORE:
+      return {
+        chatsStore: [],
+        user: {},
+        isChatListLoading: true,
+        isChatListError: false,
+        accessToken: {},
+        isAuthenticated: false,
+        currentSearchedChat: {},
+        newChat: {},
+        selectedChat: {},
+        socket: {},
       };
     default:
       return state;

@@ -124,7 +124,9 @@ const WriteNewMessage = () => {
           onSubmit={(e) => {
             e.preventDefault();
             sendMessage();
+            sendMessage();
             e.target.reset();
+            setMessage(e.target.value);
           }}
         >
           <Form.Control

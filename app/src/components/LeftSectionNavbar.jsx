@@ -1,10 +1,16 @@
 import { OverlayTrigger } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
+import { useDispatch } from "react-redux";
+import { CLEAR_FULL_STORE } from "../redux/actions";
 import GroupChatModal from "./GroupChatModal";
 import NewChatModal from "./NewChatModal";
 import UserInfo from "./UserInfo";
 
 const LeftSectionNavbar = () => {
+  const dispatch = useDispatch();
+  const clearStore = () => {
+    dispatch({ type: CLEAR_FULL_STORE });
+  };
   const popover = (
     <div className="popoverNavbar">
       <div className="popoverDiv">
@@ -19,7 +25,7 @@ const LeftSectionNavbar = () => {
       <div className="popoverDiv">
         <p>Settings</p>
       </div>
-      <div className="popoverDiv">
+      <div className="popoverDiv" onClick={clearStore}>
         <p>Log Out</p>
       </div>
     </div>
