@@ -169,10 +169,11 @@ export default function GroupChatModal() {
               )}
               <div className="d-flex mt-2">
                 {members.length !== 0 ? (
-                  members.map((member) => (
+                  members.map((member, index) => (
                     <div
                       onClick={() => setMembersArray(member)}
                       className="d-flex flex-column align-items-center mx-1 groupMember"
+                      key={index}
                     >
                       <img
                         src={
@@ -223,7 +224,7 @@ export default function GroupChatModal() {
                   )
                 )
               ) : users ? (
-                users.map((user) =>
+                users.map((user, index) =>
                   user._id !== mainUserId ? (
                     <div
                       className="d-flex userSearchUser"

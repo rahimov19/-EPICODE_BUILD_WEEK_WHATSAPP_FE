@@ -47,6 +47,7 @@ const MainChat = () => {
       {selectedChat && selectedChat.history ? (
         selectedChat.history.map((msg, index) => {
           if (msg.sender._id.toString() !== myProfile._id.toString()) {
+            console.log("11111111111");
             return (
               <div className="incomingMessage" key={index}>
                 <Row>
@@ -58,7 +59,7 @@ const MainChat = () => {
                         className="messageAvatar"
                       />
                     ) : (
-                      <Icon.PersonFill />
+                      <Icon.PersonFill className="messageAvatar" />
                     )}
                   </div>
                   <div className="d-flex align-items-end">
@@ -82,6 +83,7 @@ const MainChat = () => {
               </div>
             );
           } else {
+            console.log("22222");
             return (
               <div className="outcommingMessage" key={index}>
                 <Row className="outMesssageRow">
@@ -93,7 +95,7 @@ const MainChat = () => {
                         className="messageAvatar"
                       />
                     ) : (
-                      <Icon.PersonFill />
+                      <Icon.PersonFill className="messageAvatar" />
                     )}
                   </div>
                   <div className="d-flex align-items-end">

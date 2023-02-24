@@ -5,12 +5,12 @@ const RightSectionNavbar = () => {
   const selectedChat = useSelector((state) => state.chats.selectedChat);
   return (
     <div className="flex-utility justify-content-between align-items-center h-100">
-      <div className="flex-utility">
-        <div className="navbar-user-icon flex-utility align-items-center justify-content-center mr-3">
-          {selectedChat &&
-          selectedChat.type === "private" &&
-          selectedChat.members ? (
-            selectedChat.members[0].avatar ? (
+      {selectedChat &&
+      selectedChat.type === "private" &&
+      selectedChat.members ? (
+        <div className="flex-utility">
+          <div className="navbar-user-icon flex-utility align-items-center justify-content-center mr-3">
+            {selectedChat.members[0].avatar ? (
               <img
                 src={selectedChat.members[0].avatar}
                 alt="avatar image"
@@ -18,16 +18,18 @@ const RightSectionNavbar = () => {
               />
             ) : (
               <Icon.PersonFill className="defaultUserAvatar" />
-            )
-          ) : selectedChat &&
-            selectedChat.type === "group" &&
-            selectedChat.members ? (
-            <Icon.PeopleFill className="defaultGroupAvatar" />
-          ) : (
-            <></>
-          )}
+            )}
+          </div>
+          <div className="my-auto">{selectedChat.members[0].username}</div>
         </div>
-      </div>
+      ) : (
+        <div className="flex-utility">
+          <div className="navbar-user-icon flex-utility align-items-center justify-content-center mr-3">
+            <Icon.PeopleFill className="defaultGroupAvatar" />
+          </div>
+          <div className="my-auto">{selectedChat.groupName}</div>
+        </div>
+      )}
       <div className="flex-utility">
         <div className="mr-3">
           <Icon.Search className="iconTop" />
