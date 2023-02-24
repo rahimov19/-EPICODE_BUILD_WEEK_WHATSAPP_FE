@@ -105,7 +105,14 @@ textarea.h-100:enabled {
   border-left: 0 !important;
   outline: none !important;
 }
-
+.input-search-bg2,
+.input-search-bg2:focus {
+  border-color: var(--icon-color) !important;
+  box-shadow: none !important;
+  background-color: var(--hover-bg-color) !important;
+  outline: none !important;
+  color: aliceblue;
+}
 .chat-user-icon {
   background-color: var(--sent-message-color);
   height: 50px;
@@ -425,5 +432,101 @@ input[type="file"] {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+.memberAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.create_chat_button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5em;
+  background-color: var(--sent-message-color);
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.5em;
+}
+.input-search-bg2 {
+  animation-duration: 1s;
+  animation-name: groupName;
+}
+
+@keyframes groupName {
+  0% {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.create_chat_button {
+  animation-duration: 1s;
+  animation-name: groupButton;
+  cursor: pointer;
+}
+
+@keyframes groupButton {
+  0% {
+    transform: translateX(60px);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.groupMember {
+  animation-duration: 1s;
+  animation-name: groupMember;
+  transition: 1s;
+  cursor: crosshair;
+}
+
+@keyframes groupMember {
+  0% {
+    transform: translateX(60px);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
