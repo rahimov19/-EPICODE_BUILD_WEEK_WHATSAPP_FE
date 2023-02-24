@@ -13,7 +13,7 @@ const RightSectionNavbar = () => {
             selectedChat.members[0].avatar ? (
               <img
                 src={selectedChat.members[0].avatar}
-                alt="avatar image"
+                alt="avatar"
                 className="userImageChat"
               />
             ) : (

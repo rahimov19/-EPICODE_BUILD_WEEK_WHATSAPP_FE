@@ -12,16 +12,14 @@ const ChatList = () => {
   );
 
   const matchingChats = chatList.filter((chat) => {
-    if (JSON.stringify(currentSearchedChat) !== JSON.stringify({})) {
-      chat.members[0].username
+    if (currentSearchedChat === "") {
+      return chatList;
+    } else {
+      return chat.members[0].username
         .toLowerCase()
         .includes(currentSearchedChat.toLowerCase());
-
-      return chat;
     }
   });
-
-  useEffect(() => {}, [chatList]);
 
   return (
     <div>
