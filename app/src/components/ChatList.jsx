@@ -23,9 +23,9 @@ const ChatList = () => {
     }
   });
 
-  // useEffect(() => {
-  //   console.log("rerendered page****************");
-  // }, [chatList]);
+  useEffect(() => {
+    console.log("page rerendered******");
+  }, [chatList]);
 
   console.log("My chat list usernames : ", matchingChats);
   return (

@@ -9,6 +9,8 @@ export const SET_SEARCHED_CHAT = "SET_SEARCHED_CHAT";
 export const CREATE_NEW_CHAT = "CREATE_NEW_CHAT";
 export const SET_SELECTED_CHAT = "SET_SELECTED_CHAT";
 export const GET_SOCKET = "GET_SOCKET";
+export const UPDATE_CHAT = "UPDATE_CHAT";
+export const CLEAR_FULL_STORE = "CLEAR_FULL_STORE";
 
 export const getSocketAction = (socket) => {
   return {
@@ -276,7 +278,7 @@ export const getChat = (accessToken, id) => {
       if (response.ok || response.status === 204) {
         const updatedChat = await response.json();
         dispatch({
-          type: "UPDATE_CHAT",
+          type: UPDATE_CHAT,
           payload: updatedChat,
         });
         dispatch({ type: SET_SELECTED_CHAT, payload: updatedChat });

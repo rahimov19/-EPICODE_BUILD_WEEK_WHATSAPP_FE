@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import * as Icon from "react-bootstrap-icons";
 import { format, parseISO } from "date-fns";
 
-
-
 import { useContext, useEffect, useRef } from "react";
 import {
   fetchChatsAction,
@@ -18,9 +16,7 @@ import { SocketContent } from "../context/socket";
 const MainChat = () => {
   const socket = useContext(SocketContent);
 
-
   const selectedChatHistory = useSelector((state) => state.chats.selectedChat);
-
 
   const selectedChat = useSelector((state) => state.chats.selectedChat);
   const chats = useSelector((state) => state.chats.chatsStore);
@@ -38,7 +34,8 @@ const MainChat = () => {
     return () => {
       socket.removeAllListeners("newMessage");
     };
-  }, []);
+  }, [selectedChat]);
+
   useEffect(() => {
     chats.map((chat) => socket.emit("join-room", chat.room));
   }, []);
@@ -46,7 +43,6 @@ const MainChat = () => {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView();
   }, [chats]);
-
 
   return (
     <div className="chat-scroll">
